@@ -1,0 +1,22 @@
+.emailInfo {
+    padding: 32px;
+    border: 1px solid;
+    background-color: #fff;
+}
+  
+.emailFromBody {
+    font-weight: bold;
+}
+
+.emailSubjectBody {
+    margin-top: 16px;
+}
+
+.emailAddressBody, .emailTimeBody {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.emailMessageBody {
+    margin-top: 48px;
+}

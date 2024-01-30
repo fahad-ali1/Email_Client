@@ -1,0 +1,24 @@
+.deleteButton {
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 150px;
+    line-height: 30px;
+    margin-bottom: 30px;
+  }
+
+.deleteMessageButton {
+    margin-top: 24px;
+    margin-bottom: 30px;
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 150px;
+    line-height: 30px;
+}
+
+.deleteButton:hover, .deleteMessageButton:hover {
+    cursor: pointer;
+}
