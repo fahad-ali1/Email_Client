@@ -15,6 +15,10 @@ function App() {
   const [inboxView, setInboxView] = useState(true);
   const [deletedView, setDeletedView] = useState(false);
 
+
+  /**
+   *  Fetch emails from API
+   */
   useEffect(() => {
     const fetchEmails = async () => {
       const response = await axios.get(
@@ -26,6 +30,9 @@ function App() {
     fetchEmails();
   }, []);
 
+  /**
+   * Deals with active, read and unread emails
+   */
   useEffect(() => {
     if (selectedEmail) {
       const updatedEmailsStatus = filteredEmails.map(email => {
@@ -47,6 +54,9 @@ function App() {
     }
   }, [selectedEmail]);
 
+  /**
+   *  Search function by subjects
+   */
   useEffect(() => {
     let filteredEmails = [];
     if (searchInput === "") {
@@ -62,14 +72,23 @@ function App() {
     setEmails(filteredEmails);
   }, [originalEmails, searchInput]);
   
+  /**
+   *  Sets the active email state
+   */
   const activeEmail = (userEmail) => {
     setSelectedEmail(userEmail);
   };
 
+  /**
+   *  Sets search target state
+   */
   const handleInput = e => {
     setSearchInput(e.target.value);
   };
 
+  /**
+   *  Filters emails and finds deleted items
+   */
   const handleDelete = () => {
     // Filter and select the selected email, set it to deleted
     const updatedEmailsStatus = filteredEmails.map(email => {
@@ -83,6 +102,10 @@ function App() {
     setSelectedEmail(null);
   };
 
+
+  /**
+   *  Filters emails and finds undeleted items
+   */
   const handleInbox = () => {
     // Filter and select the selected email, set it to no longer deleted
     const updatedEmailsStatus = filteredEmails.map(email => {
