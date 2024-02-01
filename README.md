@@ -27,7 +27,7 @@ This was a quick project for an Email Client System built using React. It allows
 2. **Navigate to the project directory:**
 
    ```bash
-   cd Email-Client
+   cd Email_Client
    ```
 
 3. **Install dependencies located in package.json:**
