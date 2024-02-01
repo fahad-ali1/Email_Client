@@ -62,6 +62,10 @@ function App() {
     setEmails(filteredEmails);
   }, [originalEmails, searchInput]);
   
+  const activeEmail = (userEmail) => {
+    setSelectedEmail(userEmail);
+  };
+
   const handleInput = e => {
     setSearchInput(e.target.value);
   };
@@ -79,7 +83,6 @@ function App() {
     setSelectedEmail(null);
   };
 
-
   const handleInbox = () => {
     // Filter and select the selected email, set it to no longer deleted
     const updatedEmailsStatus = filteredEmails.map(email => {
@@ -92,10 +95,6 @@ function App() {
   
     setEmails(updatedEmailsStatus);
     setSelectedEmail(null);
-  };
-
-  const activeEmail = (userEmail) => {
-    setSelectedEmail(userEmail);
   };
 
   return (

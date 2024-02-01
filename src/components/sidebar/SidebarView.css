@@ -1,6 +1,7 @@
 .emailSidebar {
     width: 300px;
     border: 1px solid #cbcbcb;
+    border-radius: 5px;
 }
 
 .emailSidebarItem {
@@ -8,6 +9,8 @@
     cursor: pointer;
     border-bottom: 1px solid #dfdfdf;
     transition: background-color 0.3s ease;
+    margin: 5px;
+    border-radius: 6px;
 }
 
 .emailSidebarItem.read {

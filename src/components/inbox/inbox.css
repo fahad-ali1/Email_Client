@@ -6,6 +6,7 @@
     width: 150px;
     line-height: 30px;
     margin-bottom: 30px;
+    border-radius: 5px;
   }
 
 .moveToInbox{
@@ -16,6 +17,7 @@
   width: 150px;
   line-height: 30px;
   margin: 30px;
+  border-radius: 5px;
 }
 
 .inboxButton:hover, .moveToInbox:hover {
