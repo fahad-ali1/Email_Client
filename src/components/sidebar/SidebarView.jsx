@@ -6,9 +6,9 @@ const SidebarView = ({ emails, activeEmail, inboxView, deletedView }) => {
 
   // Filter emails based on view (deleted or inbox)
   if (inboxView) {
-    filteredEmails = emails.filter(email => !email.deleted);
+    filteredEmails = emails.filter(email => email.tag === "inbox");
   } else if (deletedView) {
-    filteredEmails = emails.filter(email => email.deleted);
+    filteredEmails = emails.filter(email => email.tag === "deleted");
   }
 
   return (

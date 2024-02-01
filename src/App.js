@@ -93,7 +93,7 @@ function App() {
     // Filter and select the selected email, set it to deleted
     const updatedEmailsStatus = filteredEmails.map(email => {
       if (email.id === selectedEmail.id) {
-        return { ...email, deleted: true };
+        return { ...email, tag: 'deleted' };
       } else {
         return email;
       }
@@ -110,7 +110,7 @@ function App() {
     // Filter and select the selected email, set it to no longer deleted
     const updatedEmailsStatus = filteredEmails.map(email => {
       if (email.id === selectedEmail.id) {
-        return { ...email, deleted: false };
+        return { ...email, tag: 'inbox' };
       } else {
         return email;
       }
