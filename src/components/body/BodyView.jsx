@@ -2,7 +2,7 @@ import React from "react";
 
 import './BodyView.css'; 
 
-const BodyView = ({ selectedEmail }) => {
+const BodyView = ({ selectedEmail, handleDelete, handleInbox}) => {
     const {from, subject, address, time, message } = selectedEmail;
 
     return (
@@ -12,8 +12,8 @@ const BodyView = ({ selectedEmail }) => {
         <div className="emailAddressBody">Address: {address}</div>
         <div className="emailTimeBody">Time: {time}</div>
         <div className="emailMessageBody">{message}</div>
-        <button className="deleteMessageButton">Delete Email</button>
-        <button className="moveToInbox">Move to Inbox</button>
+        <button className="deleteMessageButton" onClick={handleDelete}>Delete Email</button>
+        <button className="moveToInbox" onClick={handleInbox}>Move to Inbox</button>
       </div>
     );
   };

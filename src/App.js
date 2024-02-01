@@ -9,9 +9,11 @@ import './App.css';
 
 function App() {
   const [originalEmails, setOriginalEmails] = useState([]); 
-  const [emails, setEmails] = useState([]); 
+  const [filteredEmails, setEmails] = useState([]); 
   const [selectedEmail, setSelectedEmail] = useState(null);
   const [searchInput, setSearchInput] = useState("");
+  const [inboxView, setInboxView] = useState(true);
+  const [deletedView, setDeletedView] = useState(false);
 
   useEffect(() => {
     const fetchEmails = async () => {
@@ -26,19 +28,12 @@ function App() {
 
   useEffect(() => {
     if (selectedEmail) {
-      const updatedEmailsStatus = emails.map(email => {
+      const updatedEmailsStatus = filteredEmails.map(email => {
         // Index emails until currently selected email found
         if (email.id === selectedEmail.id) {
           // Active true or false for email
           email.active = !email.active;
           email.read = false;
-
-          // TODO: Implement delete functionality
-          if (email.id === selectedEmail.id && email.deleteMessageButton) {
-            email.deleted = true;
-          } else {
-            email.deleted = false;
-          }
         } else {
           // Deactivates previous selected email
           email.active = false;
@@ -71,6 +66,34 @@ function App() {
     setSearchInput(e.target.value);
   };
 
+  const handleDelete = () => {
+    // Filter and select the selected email, set it to deleted
+    const updatedEmailsStatus = filteredEmails.map(email => {
+      if (email.id === selectedEmail.id) {
+        return { ...email, deleted: true };
+      } else {
+        return email;
+      }
+    });
+    setEmails(updatedEmailsStatus);
+    setSelectedEmail(null);
+  };
+
+
+  const handleInbox = () => {
+    // Filter and select the selected email, set it to no longer deleted
+    const updatedEmailsStatus = filteredEmails.map(email => {
+      if (email.id === selectedEmail.id) {
+        return { ...email, deleted: false };
+      } else {
+        return email;
+      }
+    });
+  
+    setEmails(updatedEmailsStatus);
+    setSelectedEmail(null);
+  };
+
   const activeEmail = (userEmail) => {
     setSelectedEmail(userEmail);
   };
@@ -79,20 +102,17 @@ function App() {
     <div className="App">
       <div className="inbox_trash">
         <h1 className='title'>Select</h1>
-        <Deleted/> 
-        <Inbox/>
+        <Deleted setDeletedView={setDeletedView} setInboxView={setInboxView}/>
+        <Inbox setInboxView={setInboxView} setDeletedView={setDeletedView}/>
       </div>
       <div className="sidebar">
         <h1 className='title'>Inbox</h1>
-        <SearchBar
-        placeholder='Search by Subject'
-        handleInput={handleInput}
-        />
-        <SidebarView emails={emails} activeEmail={activeEmail} />
+        <SearchBar placeholder="Search by Subject" handleInput={handleInput}/>
+        <SidebarView emails={filteredEmails} activeEmail={activeEmail} inboxView={inboxView} deletedView={deletedView}/>
       </div>
-      <div className='message'>
-        <h1 className='title'>Message</h1>
-        {selectedEmail && <BodyView selectedEmail={selectedEmail} />}
+      <div className="message">
+        <h1 className="title">Message</h1>
+        {selectedEmail && (<BodyView selectedEmail={selectedEmail} handleDelete={handleDelete} handleInbox={handleInbox}/>)}
       </div>
     </div>
   );

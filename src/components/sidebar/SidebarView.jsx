@@ -1,11 +1,20 @@
 import React from "react";
 import './SidebarView.css';
 
-const SidebarView = ({ emails, activeEmail }) => {
+const SidebarView = ({ emails, activeEmail, inboxView, deletedView }) => {
+  let filteredEmails = emails;
+
+  // Filter emails based on view (deleted or inbox)
+  if (inboxView) {
+    filteredEmails = emails.filter(email => !email.deleted);
+  } else if (deletedView) {
+    filteredEmails = emails.filter(email => email.deleted);
+  }
+
   return (
     <div className="emailSidebar">
       {/* Loop all emails and display */}
-      {emails.map(email => {
+      {filteredEmails.map(email => {
         // Sets appropriate class for email item
         let emailClasses = "emailSidebarItem";
         if (email.active) {

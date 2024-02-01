@@ -2,12 +2,19 @@ import React from "react";
 
 import "./deleted.css";
 
-const Deleted = () => {
-    return (
-      <button className="deleteButton">
-        Deleted Mails
-      </button>
-    );
+const Deleted = ({setDeletedView, setInboxView}) => {
+
+  const handleDeleteView = () => {
+    console.log("Delet button")
+    setInboxView(false)
+    setDeletedView(true)
   };
-  
-  export default Deleted;
+
+return (
+  <button className="deleteButton" onClick={handleDeleteView}>
+    Deleted Mails
+  </button>
+);
+};
+
+export default Deleted;
